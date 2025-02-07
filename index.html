@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/index.css" />
+    <script src="modules/api.js" type="module"></script>
+    <script src="modules/index.js" type="module"></script>
+    <title>Quiz App</title>
+  </head>
+  <body>
+    <form class="quiz-form">
+      <div>
+        <h1>Quiz App</h1>
+
+        <div class="dropdown-container">
+          <label for="category">Categories:</label>
+          <select id="category">
+            <option value="27">Animals</option>
+            <option value="26">Celebrities</option>
+            <option value="25">Arts</option>
+            <option value="24">Politics</option>
+            <option value="23">History</option>
+            <option value="22">Geography</option>
+            <option value="21">Sports</option>
+            <option value="20">Mythology</option>
+            <option value="">Any Category</option>
+          </select>
+        </div>
+
+        <div class="dropdown-container">
+          <label for="difficulty">Difficulty:</label>
+          <select id="difficulty">
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="dropdown-container">
+          <label for="type">Type:</label>
+          <select id="type">
+            <option value="multiple">Multiple questions</option>
+            <option value="boolean">True / False</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="playButton">Play Game</button>
+      </div>
+    </form>
+  </body>
+</html>
