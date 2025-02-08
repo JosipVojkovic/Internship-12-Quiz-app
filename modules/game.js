@@ -40,6 +40,7 @@ function displayQuestion(questionData) {
       event.target.classList.add("clicked-answer");
       const dialogEl = document.querySelector(".confirm-dialog");
       dialogEl.style.display = "flex";
+      dialogEl.showModal();
       document.querySelector(
         ".confirm-dialog p"
       ).textContent = `Your answer: ${event.target.textContent}`;
