@@ -1,35 +1,58 @@
-const questions = JSON.parse(localStorage.getItem("questions"));
-
-if (!questions) {
-  console.error("Nema pitanja u LocalStorage!");
-} else {
-  console.log(questions);
+function getQuestions() {
+  const questions = JSON.parse(localStorage.getItem("questions"));
+  if (!questions || questions.length === 0) {
+    console.error("Nema pitanja u LocalStorage!");
+    return [];
+  }
+  return questions;
 }
 
+const questions = getQuestions();
 let questionCounter = 0;
-const correctAnswer = questions[questionCounter].correct_answer;
-const inccorectAnswers = questions[questionCounter].incorrect_answers;
-const answers = [...inccorectAnswers];
-const randomIndex = Math.floor(Math.random() * (answers.length + 1));
-answers.splice(randomIndex, 0, correctAnswer);
 
-console.log(answers);
+function shuffleAnswers(correctAnswer, incorrectAnswers) {
+  const answers = [...incorrectAnswers];
+  const randomIndex = Math.floor(Math.random() * (answers.length + 1));
+  answers.splice(randomIndex, 0, correctAnswer);
+  return answers;
+}
 
-document.querySelector(".question").textContent =
-  questions[questionCounter].question;
+function displayQuestion(questionData) {
+  document.querySelector(".question").textContent = questionData.question;
+  document.querySelector(".question-container h3").textContent = `Question: ${
+    questionCounter + 1
+  }`;
+  const answersContainerEl = document.querySelector(".answers-container");
+  answersContainerEl.innerHTML = "";
 
-const answersContainerEl = document.querySelector(".answers-container");
+  const answers = shuffleAnswers(
+    questionData.correct_answer,
+    questionData.incorrect_answers
+  );
 
-answers.forEach((a) => {
-  const btn = document.createElement("button");
-  btn.textContent = a;
-  answersContainerEl.appendChild(btn);
-});
+  answers.forEach((a) => {
+    const btn = document.createElement("button");
+    btn.textContent = a;
+    btn.addEventListener("click", (event) => {
+      document
+        .querySelectorAll(".answers-container button")
+        .forEach((b) => b.classList.remove("clicked-answer"));
+      event.target.classList.add("clicked-answer");
+      const dialogEl = document.querySelector(".confirm-dialog");
+      dialogEl.style.display = "flex";
+      document.querySelector(
+        ".confirm-dialog p"
+      ).textContent = `Your answer: ${event.target.textContent}`;
+    });
+    answersContainerEl.appendChild(btn);
+  });
+}
 
-let stoppageTime = 20;
-const stoppageTimeEl = document.querySelector(".stoppage-time");
-stoppageTimeEl.textContent = stoppageTime;
-function startTimer() {
+function startTimer(callback) {
+  let stoppageTime = 20;
+  const stoppageTimeEl = document.querySelector(".stoppage-time");
+  stoppageTimeEl.textContent = stoppageTime;
+
   const interval = setInterval(() => {
     stoppageTime--;
     stoppageTimeEl.textContent = stoppageTime;
@@ -37,6 +60,7 @@ function startTimer() {
     if (stoppageTime === 0) {
       clearInterval(interval);
       console.log("Vrijeme isteklo!");
+      callback();
     } else if (stoppageTime <= 5) {
       stoppageTimeEl.style.backgroundColor = "red";
       stoppageTimeEl.classList.add("timerAnimation");
@@ -50,4 +74,17 @@ function startTimer() {
   }, 1000);
 }
 
-startTimer();
+function loadQuestion() {
+  if (questionCounter >= questions.length) {
+    console.log("Kviz je završen!");
+    return;
+  }
+
+  displayQuestion(questions[questionCounter]);
+
+  startTimer(() => {
+    questionCounter++;
+  });
+}
+
+loadQuestion();
