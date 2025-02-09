@@ -71,7 +71,6 @@ function displayQuestion(questionData) {
           ".confirm-dialog p"
         ).textContent = `Your answer: ${answerText}`;
 
-        // Obrada odabira (isti kod kao prije, s promjenom na onclick umjesto addEventListener)
         const cancelBtnEl = document.querySelector(".cancel-btn");
         cancelBtnEl.onclick = () => {
           dialogEl.style.display = "none";
@@ -117,7 +116,7 @@ function finishedQuestion(correctAnswer, timesUp) {
 
   if (timesUp) {
     isCorrectEl.textContent = "Time's up!";
-    isCorrectEl.style.color = "red"; // Postavljanje boje teksta na crveno
+    isCorrectEl.style.color = "red";
   } else if (correctAnswer) {
     score++;
     isCorrectEl.textContent = "Correct answer!";
@@ -130,10 +129,9 @@ function finishedQuestion(correctAnswer, timesUp) {
   const scoreEl = document.querySelector(".score");
   scoreEl.textContent = `Score: ${score}/${questionCounter + 1}`;
 
-  // Onemogući sve tipke nakon što je odgovor potvrđen ili vrijeme istekne
   const allBtns = document.querySelectorAll(".answers-container button");
   allBtns.forEach((b) => {
-    b.disabled = true; // Disable svih tipki
+    b.disabled = true;
   });
 }
 
@@ -141,14 +139,12 @@ function startTimer(callback) {
   let stoppageTime = 20;
   const stoppageTimeEl = document.querySelector(".stoppage-time");
 
-  // Resetiraj boje i stilove prije nego što pokreneš novi timer
   stoppageTimeEl.style.backgroundColor = "green";
   stoppageTimeEl.style.color = "black";
   stoppageTimeEl.classList.remove("timerAnimation");
 
   stoppageTimeEl.textContent = stoppageTime;
 
-  // Očisti prethodni interval prije početka novog
   if (timerInterval) clearInterval(timerInterval);
 
   timerInterval = setInterval(() => {
@@ -159,7 +155,6 @@ function startTimer(callback) {
       clearInterval(timerInterval);
       console.log("Vrijeme isteklo!");
 
-      // Zatvori dijalog ako je otvoren
       const dialogEl = document.querySelector(".confirm-dialog");
       if (dialogEl.style.display === "flex") {
         dialogEl.style.display = "none";
