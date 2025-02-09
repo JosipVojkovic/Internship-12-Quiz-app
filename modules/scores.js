@@ -1,14 +1,19 @@
 const scores = JSON.parse(localStorage.getItem("scores")) || [];
+const scoresTable = document.querySelector("#score-table");
 const tableBody = document.querySelector("#score-table tbody");
-console.log(scores);
+const p = document.querySelector(".no-scores");
+
+const mainMenuBtnEl = document.querySelector(".main-menu-btn");
+mainMenuBtnEl.addEventListener("click", () => {
+  window.location.href = "index.html";
+});
 
 if (scores.length < 1) {
-  scoresList.style.display = "none";
-  const p = document.createElement("p");
+  scoresTable.style.display = "none";
   p.textContent = "There is no scores yet!";
-
-  document.querySelector(".scores-container").appendChild(p);
 } else {
+  p.style.display = "none";
+
   scores.forEach((s) => {
     const row = document.createElement("tr");
 
@@ -30,10 +35,5 @@ if (scores.length < 1) {
     row.appendChild(dateCell);
 
     tableBody.appendChild(row);
-
-    const mainMenuBtnEl = document.querySelector(".main-menu-btn");
-    mainMenuBtnEl.addEventListener("click", () => {
-      window.location.href = "index.html";
-    });
   });
 }

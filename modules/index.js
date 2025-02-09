@@ -10,7 +10,7 @@ quizFormEl.addEventListener("submit", async (event) => {
   localStorage.setItem("questions", JSON.stringify(results));
   localStorage.setItem("scores", JSON.stringify([]));
 
-  window.location.href = "game.html";
+  window.location.href = "../game.html";
 });
 
 scoresEl.addEventListener("click", () => {
