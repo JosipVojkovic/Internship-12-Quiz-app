@@ -108,3 +108,9 @@ body {
   transform: scale(1.05);
   box-shadow: 0px 2px 5px black;
 }
+
+.main-menu-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

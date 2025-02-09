@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: url(../images/vecteezy_seamless-clouds-floating-in-the-sky_366121.svg)
+    no-repeat center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3%;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.scores-container {
+  position: relative;
+  min-height: 100%;
+  background-color: rgba(233, 178, 0, 255);
+  border-radius: 20px;
+  padding: 20px;
+  border: 5px solid rgba(251, 219, 17, 255);
+  box-shadow: 0px 1px 5px black;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 100%;
+  max-width: 800px;
+}
+
+.scores-container h1 {
+  color: white;
+  font-size: 40px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.scores-container h1::before {
+  content: "Quiz App";
+  color: black;
+  font-size: 39.5px;
+  position: absolute;
+  z-index: 0;
+  top: -2px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #353535;
+}
+
+th {
+  background-color: #4caf50;
+  color: white;
+}
+
+tr:nth-child(odd) {
+  background-color: #dfdfdf;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
