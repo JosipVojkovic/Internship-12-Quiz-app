@@ -161,19 +161,17 @@ function startTimer(callback) {
         dialogEl.close();
       }
 
-      // Očisti pending timeout za odgovor
       if (currentAnswerTimeout) {
         clearTimeout(currentAnswerTimeout);
         currentAnswerTimeout = null;
       }
 
-      // Onemogući sve odgovore ako je vrijeme isteklo
       const allBtns = document.querySelectorAll(".answers-container button");
       allBtns.forEach((b) => {
-        b.disabled = true; // Disable svih tipki
+        b.disabled = true;
       });
 
-      callback(true); // Callback označava da je vrijeme isteklo
+      callback(true);
     } else if (stoppageTime <= 5) {
       stoppageTimeEl.style.backgroundColor = "red";
       stoppageTimeEl.classList.add("timerAnimation");
