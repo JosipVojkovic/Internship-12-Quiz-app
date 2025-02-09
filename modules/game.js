@@ -11,7 +11,7 @@ const questions = getQuestions();
 console.log(questions);
 let score = 0;
 let questionCounter = 0;
-let timerInterval = null; // Za pohranu intervala timera
+let timerInterval = null;
 let currentAnswerTimeout = null;
 
 function shuffleAnswers(correctAnswer, incorrectAnswers) {
@@ -28,7 +28,7 @@ function displayQuestion(questionData) {
   }
 
   let scoreEl = document.querySelector(".score");
-  scoreEl.textContent = "Score: " + score + "/" + questionCounter; // Prikazuje trenirani score
+  scoreEl.textContent = "Score: " + score + "/" + questionCounter;
 
   document.querySelector(".question").textContent = questionData.question;
   document.querySelector(".question-container h3").textContent = `Question: ${
@@ -61,10 +61,8 @@ function displayQuestion(questionData) {
       const clickedButton = event.target;
       const answerText = clickedButton.textContent;
 
-      // Resetiraj prethodni timer ako postoji
       if (currentAnswerTimeout) clearTimeout(currentAnswerTimeout);
 
-      // Postavi novi timer
       currentAnswerTimeout = setTimeout(() => {
         const dialogEl = document.querySelector(".confirm-dialog");
         dialogEl.style.display = "flex";
