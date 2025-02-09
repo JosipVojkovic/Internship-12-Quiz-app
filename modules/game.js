@@ -237,7 +237,7 @@ function backToMainMenu() {
     questionAmount: questions.length,
     difficulty: questions[0].difficulty,
     category: questions[0].category,
-    date: new Date(),
+    date: new Date().toLocaleDateString("en-GB"),
   });
 
   localStorage.setItem("scores", JSON.stringify(scores));

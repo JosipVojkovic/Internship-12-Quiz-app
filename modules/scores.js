@@ -2,14 +2,6 @@ const scores = JSON.parse(localStorage.getItem("scores")) || [];
 const tableBody = document.querySelector("#score-table tbody");
 console.log(scores);
 
-function formatDate(date) {
-  const day = String(date.getDate()).padStart(2, "0");
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const year = date.getFullYear();
-
-  return `${day}${month}${year}`;
-}
-
 if (scores.length < 1) {
   scoresList.style.display = "none";
   const p = document.createElement("p");
@@ -38,5 +30,10 @@ if (scores.length < 1) {
     row.appendChild(dateCell);
 
     tableBody.appendChild(row);
+
+    const mainMenuBtnEl = document.querySelector(".main-menu-btn");
+    mainMenuBtnEl.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
   });
 }
